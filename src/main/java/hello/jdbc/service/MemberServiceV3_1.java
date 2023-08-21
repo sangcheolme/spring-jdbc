@@ -47,6 +47,11 @@ public class MemberServiceV3_1 {
         memberRepository.update(toId, toMember.getMoney() + money);
     }
 
+    /**
+     * Validates the receiving member's account before adding the transferred amount.
+     * @param toMember the member who is receiving the money
+     * @throws IllegalStateException if the receiving member has a specific ID ("ex")
+     */
     private static void validation(Member toMember) {
         if (toMember.getMemberId().equals("ex")) {
             throw new IllegalStateException("이체 중 예외 발생");
